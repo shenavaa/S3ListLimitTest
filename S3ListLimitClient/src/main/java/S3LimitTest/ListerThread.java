@@ -23,7 +23,7 @@ public class ListerThread extends Thread {
 
 	static {
 		ClientConfiguration clientConfig = new ClientConfiguration();
-		clientConfig.setRequestTimeout(20 * 1000);
+		clientConfig.setRequestTimeout(1200 * 1000);
 		clientConfig.setConnectionMaxIdleMillis(1000L);
 		clientConfig.setMaxConnections(1000);
 		clientConfig.setMaxErrorRetry(0);
