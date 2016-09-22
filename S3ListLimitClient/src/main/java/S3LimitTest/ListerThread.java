@@ -46,11 +46,13 @@ public class ListerThread extends Thread {
 						final ListObjectsV2Request req = new ListObjectsV2Request().withBucketName(bucketName).withMaxKeys(1);
 						ListObjectsV2Result result;
 						result = s3Client.listObjectsV2(req);
+						/*
 			            for (S3ObjectSummary objectSummary : result.getObjectSummaries()) {
 			                System.out.println(" - " + objectSummary.getKey() + "  " +
 			                          "(size = " + objectSummary.getSize() + 
 			                          ")");
 			            }
+			            */
 						this.sleep(this.interval);
 						// No Exception. Going faster
 						this.interval = (long)(this.interval * 0.5) + 1 + random.nextInt(20);
@@ -59,7 +61,7 @@ public class ListerThread extends Thread {
 						e.printStackTrace();
 						return;
 					} catch (Exception e) {
-						System.out.println("Got exception. slowing down:" + e.getMessage());
+						//System.out.println("Got exception. slowing down:" + e.getMessage());
 						this.interval = (long)(this.interval * 1.6) + 1;
 					}
 				}
