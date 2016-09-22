@@ -14,6 +14,7 @@ import com.amazonaws.services.s3.model.S3ObjectSummary;
 public class ListerThread extends Thread {
 	
 	public static AtomicInteger counter = new AtomicInteger(0);
+	public static AtomicInteger exceptionCounter = new AtomicInteger(0);
 	
 	private Random random;
 	private String bucketName;
@@ -63,6 +64,7 @@ public class ListerThread extends Thread {
 					} catch (Exception e) {
 						//System.out.println("Got exception. slowing down:" + e.getMessage());
 						this.interval = (long)(this.interval * 1.6) + 1;
+						exceptionCounter.incrementAndGet();
 					}
 				}
 	}
