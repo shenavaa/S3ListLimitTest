@@ -35,6 +35,13 @@ public class Main {
 	}
 	
 	public static void main(String argv[]) {
+		if (argv.length < 2 ) {
+			System.out.println("Wrong arguments!");
+			return;
+		}
+		String bName=argv[0];
+		int tcount = Integer.parseInt(argv[1]);
+		
 		java.security.Security.setProperty("networkaddress.cache.ttl" , "60");
 		Main m = new Main("shenavaa-test", 10);
 	}
