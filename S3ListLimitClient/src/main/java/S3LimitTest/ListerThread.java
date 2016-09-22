@@ -7,6 +7,9 @@ import com.amazonaws.ClientConfiguration;
 import com.amazonaws.auth.profile.ProfileCredentialsProvider;
 import com.amazonaws.retry.RetryPolicy;
 import com.amazonaws.services.s3.AmazonS3Client;
+import com.amazonaws.services.s3.model.ListObjectsV2Request;
+import com.amazonaws.services.s3.model.ListObjectsV2Result;
+import com.amazonaws.services.s3.model.S3ObjectSummary;
 
 public class ListerThread extends Thread {
 	
@@ -27,7 +30,7 @@ public class ListerThread extends Thread {
 		clientConfig.setConnectionTTL(1000000L);
 	    clientConfig.setUseThrottleRetries(false);
 
-		s3Client =  = new AmazonS3Client(new ProfileCredentialsProvider(), clientConfig);
+		s3Client =  new AmazonS3Client(new ProfileCredentialsProvider(), clientConfig);
 	}
 	
 	public ListerThread(String bucketName,Integer interval) {
@@ -40,9 +43,9 @@ public class ListerThread extends Thread {
 				while ( (this.isInterrupted() == false) && (this.isAlive()) ) {
 					try {
 						this.counter.incrementAndGet();
-						final ListObjectsV2Request req = new ListObjectsV2Request().withBucketName(bucketName).withMaxKeys();
+						final ListObjectsV2Request req = new ListObjectsV2Request().withBucketName(bucketName).withMaxKeys(1);
 						ListObjectsV2Result result;
-						result = s3client.listObjectsV2(req);
+						result = s3Client.listObjectsV2(req);
 			            for (S3ObjectSummary objectSummary : result.getObjectSummaries()) {
 			                System.out.println(" - " + objectSummary.getKey() + "  " +
 			                          "(size = " + objectSummary.getSize() + 

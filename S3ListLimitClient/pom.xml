@@ -1,9 +1,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>S3ListLimitClient</groupId>
-  <artifactId>S3ListLimitClient</artifactId>
+  <groupId>S3LimitTest</groupId>
+  <artifactId>S3LimitTest</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <name>S3ListLimitTest</name>
+  <name>S3LimitTest</name>
 	<properties>
 		<jdk.version>1.8</jdk.version>
 		<junit.version>4.11</junit.version>
@@ -21,7 +21,7 @@
   	</dependency>
   </dependencies>
   	<build>
-		<finalName>S3ListLimitTest</finalName>
+		<finalName>S3LimitTest</finalName>
 		<plugins>
 
 			<!-- download source code in Eclipse, best practice -->
