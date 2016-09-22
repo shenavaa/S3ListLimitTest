@@ -24,6 +24,9 @@ public class ListerThread extends Thread {
 		clientConfig.setMaxConnections(1000);
 		clientConfig.setMaxErrorRetry(0);
 		clientConfig.setRetryPolicy(new RetryPolicy(null, null, 0, true));
+		clientConfig.setConnectionTTL(1000000L);
+	    clientConfig.setUseThrottleRetries(false);
+
 		s3Client =  = new AmazonS3Client(new ProfileCredentialsProvider(), clientConfig);
 	}
 	
