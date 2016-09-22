@@ -65,8 +65,8 @@ public class ListerThread extends Thread {
 						//System.out.println("Got exception. slowing down:" + e.getMessage());
 						
 						this.interval = (long)(this.interval * 1.6) + 1;
-						if (this.interval > 1000) {
-							this.interval = 1000;
+						if (this.interval > 500) {
+							this.interval = 500;
 						}
 						exceptionCounter.incrementAndGet();
 					}
