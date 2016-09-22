@@ -13,7 +13,7 @@ public class ListerThread extends Thread {
 	private Random random;
 	private String bucketName;
 	private long interval;
-	private AmazonS3Client s3Client = new AmazonS3Client(new ProfileCredentialsProvider());
+	private static AmazonS3Client s3Client = new AmazonS3Client(new ProfileCredentialsProvider());
 
 	
 	public ListerThread(String bucketName,Integer interval) {
@@ -25,8 +25,8 @@ public class ListerThread extends Thread {
 	public void run() {
 				while ( (this.isInterrupted() == false) && (this.isAlive()) ) {
 					try {
-						s3Client.listObjects(bucketName, "all");
 						this.counter.incrementAndGet();
+						s3Client.listObjectsV2(bucketName);
 						this.sleep(this.interval);
 						// No Exception. Going faster
 						this.interval = (long)(this.interval * 0.5) + 1 + random.nextInt(20);
