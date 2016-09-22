@@ -40,7 +40,14 @@ public class ListerThread extends Thread {
 				while ( (this.isInterrupted() == false) && (this.isAlive()) ) {
 					try {
 						this.counter.incrementAndGet();
-						s3Client.listObjectsV2(bucketName);
+						final ListObjectsV2Request req = new ListObjectsV2Request().withBucketName(bucketName).withMaxKeys();
+						ListObjectsV2Result result;
+						result = s3client.listObjectsV2(req);
+			            for (S3ObjectSummary objectSummary : result.getObjectSummaries()) {
+			                System.out.println(" - " + objectSummary.getKey() + "  " +
+			                          "(size = " + objectSummary.getSize() + 
+			                          ")");
+			            }
 						this.sleep(this.interval);
 						// No Exception. Going faster
 						this.interval = (long)(this.interval * 0.5) + 1 + random.nextInt(20);
