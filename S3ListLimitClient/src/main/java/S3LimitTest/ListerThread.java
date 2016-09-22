@@ -56,18 +56,12 @@ public class ListerThread extends Thread {
 						this.counter.incrementAndGet();
 						this.sleep(this.interval);
 						// No Exception. Going faster
-						this.interval = (long)(this.interval * 0.5) + 1 + random.nextInt(20);
 						//System.out.println("Going faster:" + this.interval);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 						return;
 					} catch (Exception e) {
 						e.printStackTrace();
-						
-						this.interval = (long)(this.interval * 1.6) + 1;
-						if (this.interval > 500) {
-							this.interval = 200;
-						}
 						exceptionCounter.incrementAndGet();
 					}
 				}

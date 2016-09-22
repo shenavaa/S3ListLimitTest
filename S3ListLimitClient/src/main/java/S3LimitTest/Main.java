@@ -1,6 +1,7 @@
 package S3LimitTest;
 
 import java.util.LinkedList;
+import java.util.Random;
 
 import com.amazonaws.auth.profile.ProfileCredentialsProvider;
 import com.amazonaws.services.s3.AmazonS3Client;
@@ -10,8 +11,9 @@ public class Main {
 	private LinkedList<Thread> threadPool = new LinkedList<Thread>();
 	
 	public Main(String bucket, int tCount) {
+		Random r = new Random();
 		for (int i=0; i< tCount; i++) {
-			Thread t  = new ListerThread(bucket,1000);
+			Thread t  = new ListerThread(bucket,450+r.nextInt(50));
 			t.start();
 			threadPool.add(t);
 		}
