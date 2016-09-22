@@ -66,7 +66,7 @@ public class ListerThread extends Thread {
 						
 						this.interval = (long)(this.interval * 1.6) + 1;
 						if (this.interval > 500) {
-							this.interval = 500;
+							this.interval = 200;
 						}
 						exceptionCounter.incrementAndGet();
 					}
