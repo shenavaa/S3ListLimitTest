@@ -8,10 +8,9 @@ import com.amazonaws.services.s3.AmazonS3Client;
 public class Main {
 	
 	private LinkedList<Thread> threadPool = new LinkedList<Thread>();
-	private int THREAD_COUNT = 10;
+	
 	public Main(String bucket, int tCount) {
-		this.THREAD_COUNT=tCount;
-		for (int i=0; i< THREAD_COUNT; i++) {
+		for (int i=0; i< tCount; i++) {
 			Thread t  = new ListerThread(bucket,1000);
 			t.start();
 			threadPool.add(t);
