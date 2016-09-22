@@ -4,8 +4,6 @@
   <artifactId>S3ListLimitClient</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>S3ListLimitTest</name>
- 
-  
 	<properties>
 		<jdk.version>1.7</jdk.version>
 		<junit.version>4.11</junit.version>
@@ -18,7 +16,7 @@
   	</dependency>
   </dependencies>
   	<build>
-		<finalName>dateutils</finalName>
+		<finalName>S3ListLimitTest</finalName>
 		<plugins>
 
 			<!-- download source code in Eclipse, best practice -->
@@ -59,7 +57,7 @@
 			  <transformers>
 				<!-- add Main-Class to manifest file -->
                     <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-					<mainClass>S3ListLimitClient.Main</mainClass>
+					<mainClass>S3LimitTest.Main</mainClass>
 				</transformer>
 			  </transformers>
 			</configuration>
