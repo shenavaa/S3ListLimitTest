@@ -43,7 +43,7 @@ public class ListerThread extends Thread {
 	public void run() {
 				while ( (this.isInterrupted() == false) && (this.isAlive()) ) {
 					try {
-						final ListObjectsV2Request req = new ListObjectsV2Request().withBucketName(bucketName).withMaxKeys(1);
+						final ListObjectsV2Request req = new ListObjectsV2Request().withBucketName(bucketName).withPrefix("logs/hadoop/logs/").withMaxKeys(1);
 						ListObjectsV2Result result;
 						result = s3Client.listObjectsV2(req);
 						/*
