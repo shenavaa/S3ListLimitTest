@@ -1,5 +1,6 @@
 package S3LimitTest;
 
+import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import com.amazonaws.auth.profile.ProfileCredentialsProvider;
@@ -9,6 +10,7 @@ public class ListerThread extends Thread {
 	
 	public static AtomicInteger counter = new AtomicInteger(0);
 	
+	private Random random;
 	private String bucketName;
 	private long interval;
 	private AmazonS3Client s3Client = new AmazonS3Client(new ProfileCredentialsProvider());
@@ -27,7 +29,7 @@ public class ListerThread extends Thread {
 						this.counter.incrementAndGet();
 						this.sleep(this.interval);
 						// No Exception. Going faster
-						this.interval = (long)(this.interval * 0.5) + 1;
+						this.interval = (long)(this.interval * 0.5) + 1 + random.nextInt(20);
 						//System.out.println("Going faster:" + this.interval);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
