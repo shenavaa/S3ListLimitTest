@@ -3,7 +3,9 @@ package S3LimitTest;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import com.amazonaws.ClientConfiguration;
 import com.amazonaws.auth.profile.ProfileCredentialsProvider;
+import com.amazonaws.retry.RetryPolicy;
 import com.amazonaws.services.s3.AmazonS3Client;
 
 public class ListerThread extends Thread {
@@ -13,8 +15,17 @@ public class ListerThread extends Thread {
 	private Random random;
 	private String bucketName;
 	private long interval;
-	private static AmazonS3Client s3Client = new AmazonS3Client(new ProfileCredentialsProvider());
+	private static AmazonS3Client s3Client;
 
+	static {
+		ClientConfiguration clientConfig = new ClientConfiguration();
+		clientConfig.setRequestTimeout(20 * 1000);
+		clientConfig.setConnectionMaxIdleMillis(1000L);
+		clientConfig.setMaxConnections(1000);
+		clientConfig.setMaxErrorRetry(0);
+		clientConfig.setRetryPolicy(new RetryPolicy(null, null, 0, true));
+		s3Client =  = new AmazonS3Client(new ProfileCredentialsProvider(), clientConfig);
+	}
 	
 	public ListerThread(String bucketName,Integer interval) {
 		this.s3Client = s3Client;
