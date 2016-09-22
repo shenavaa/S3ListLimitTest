@@ -43,7 +43,6 @@ public class ListerThread extends Thread {
 	public void run() {
 				while ( (this.isInterrupted() == false) && (this.isAlive()) ) {
 					try {
-						this.counter.incrementAndGet();
 						final ListObjectsV2Request req = new ListObjectsV2Request().withBucketName(bucketName).withMaxKeys(1);
 						ListObjectsV2Result result;
 						result = s3Client.listObjectsV2(req);
@@ -54,6 +53,7 @@ public class ListerThread extends Thread {
 			                          ")");
 			            }
 			            */
+						this.counter.incrementAndGet();
 						this.sleep(this.interval);
 						// No Exception. Going faster
 						this.interval = (long)(this.interval * 0.5) + 1 + random.nextInt(20);
@@ -63,6 +63,7 @@ public class ListerThread extends Thread {
 						return;
 					} catch (Exception e) {
 						//System.out.println("Got exception. slowing down:" + e.getMessage());
+						
 						this.interval = (long)(this.interval * 1.6) + 1;
 						if (this.interval > 1000) {
 							this.interval = 1000;
