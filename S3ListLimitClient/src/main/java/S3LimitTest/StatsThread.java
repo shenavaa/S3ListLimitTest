@@ -9,7 +9,7 @@ public class StatsThread extends Thread {
 				return;
 			}
 			int count = ListerThread.counter.getAndSet(0);
-			System.out.println(System.currentTimeMillis() + " lists per second: " + count + " Exceptions: " + ListerThread.exceptionCounter.get());
+			System.out.println(System.currentTimeMillis() + " lists per second: " + count + " Exceptions: " + ListerThread.exceptionCounter.getAndSet(0));
 		}
 	}
 }
