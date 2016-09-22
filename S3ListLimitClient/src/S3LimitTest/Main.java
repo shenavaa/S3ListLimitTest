@@ -43,6 +43,6 @@ public class Main {
 		int tcount = Integer.parseInt(argv[1]);
 		
 		java.security.Security.setProperty("networkaddress.cache.ttl" , "60");
-		Main m = new Main("shenavaa-test", 10);
+		Main m = new Main(bName, tcount);
 	}
 }
